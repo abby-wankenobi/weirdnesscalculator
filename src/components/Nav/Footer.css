@@ -1,0 +1,36 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  background-image: url('../../assets/nav-background.jpg');
+  background-position: 0 29%;
+  background-size: 100%;
+  font-size: 16px;
+  padding: 10px 0 10px 30px;
+  font-size: 14px;
+
+  -webkit-box-shadow: 0px -5px 26px -8px rgba(7,46,129,0.61);
+  -moz-box-shadow: 0px -5px 26px -8px rgba(7,46,129,0.61);
+  box-shadow: 0px -5px 26px -8px rgba(7,46,129,0.61);
+}
+
+.name {
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.copy {
+  font-size: 10px;
+}
+
+.icon {
+  width: 18px;
+  padding-right: 5px;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: black;
+}

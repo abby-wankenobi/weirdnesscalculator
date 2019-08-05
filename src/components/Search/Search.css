@@ -1,0 +1,15 @@
+.home-container {
+  padding: 40px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid black;
+}
+
+.border-right {
+  border-right: 1px solid gray;
+}
+
+.liked-container {
+  height: 100%;
+}
