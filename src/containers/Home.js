@@ -5,6 +5,7 @@ import SearchResult from '../components/Search/SearchResult';
 import LikedGifs from '../components/Gifs/LikedGifs.js';
 import { Container, Row, Col } from "react-bootstrap";
 import apiCall from '../components/apiCall';
+import classes from './Home.css';
 
 
 class Home extends Component {
@@ -15,6 +16,7 @@ class Home extends Component {
     searchResult: null
   }
 
+  // Function being passed to Search.js
   handleSearchTermChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -23,8 +25,9 @@ class Home extends Component {
   }
 
   // On submission of search term, calls giphy API passing in search term and weirdness level
-  handleSearchTermSubmit = async (e) => {
-    e.preventDefault();
+  // Function being passed to Search.js
+  handleSearchTermSubmit = async () => {
+    console.log('weird being passed in',this.state.weirdnessScale)
     const result = await apiCall(this.state.searchTerm, this.state.weirdnessScale, this.setSearchResult);
   }
 
@@ -35,25 +38,35 @@ class Home extends Component {
     })
   }
 
+  // Sets weirdness scale and calls API again to return a new GIF
+  setWeirdnessScale = (e) => {
+    this.setState({
+      weirdnessScale: e
+    }, () => {this.handleSearchTermSubmit()})
+  }
+
+  // Conditionally renders SearchResult component depending on results from the API
   renderSearchResult = () => {
     let title = "Please enter a search term";
-    let url = "default";
+    let url = "https://via.placeholder.com/150";
     if (this.state.searchResult) {
       title = this.state.searchResult.data.title;
-      url = this.state.searchResult.data.embed_url;
+      url = this.state.searchResult.data.images.original.url;
+      console.log(url)
     }
-
     return (
       <SearchResult
         title={title}
         url={url}
+        setWeirdness={this.setWeirdnessScale}
+        weirdness={this.state.weirdnessScale}
       />
     );
   }
 
   render () {
     console.log(this.state.searchResult)
-
+    // console.log( 'this state weirdness', this.state.weirdnessScale)
     return (
       <Aux>
         <Container fluid={true}>
@@ -63,6 +76,7 @@ class Home extends Component {
                 handleChange={this.handleSearchTermChange}
                 handleSubmit={this.handleSearchTermSubmit}
               />
+
               {this.renderSearchResult()}
             </Col>
             <Col sm={6} xs={12}>
