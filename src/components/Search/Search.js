@@ -8,7 +8,10 @@ const search = (props) => (
     <p>When you find a GIF you like, press the <i>Like</i> button. Once you like 5 GIFs, well show you how weird you are.</p>
 
     <span>Search term</span>
-    <button>Search</button>
+    <div>
+      <input onChange={(e) => props.handleChange(e)} type="text"></input>
+      <button onClick={props.handleSubmit}>Search</button>
+    </div>
   </div>
 );
 

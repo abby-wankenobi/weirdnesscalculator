@@ -1,16 +1,13 @@
 
-export const apiCall = () => {
+export const apiCall = (searchTerm, weirdnessScale, setSearchResult) => {
 
-  var apiKey = "JAw7Fq19sdofijXw7zwZGG6aPD6SWQW0"
+  const apiKey = "JAw7Fq19sdofijXw7zwZGG6aPD6SWQW0";
 
-   fetch(`https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=&rating=PG`)
-  .then(response=>{
-    return response.json();
+  fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${apiKey}&s=${searchTerm}&weirdness=${weirdnessScale}`)
+  .then(res => res.json())
+  .then(data => {
+    setSearchResult(data);
   })
-  .then(data=>{
-    arg(data)
-  })
-
 }
 
 export default apiCall;
