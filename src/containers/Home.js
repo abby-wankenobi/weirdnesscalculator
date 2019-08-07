@@ -27,7 +27,6 @@ class Home extends Component {
   // On submission of search term, calls giphy API passing in search term and weirdness level
   // Function being passed to Search.js
   handleSearchTermSubmit = async () => {
-    console.log('weird being passed in',this.state.weirdnessScale)
     const result = await apiCall(this.state.searchTerm, this.state.weirdnessScale, this.setSearchResult);
   }
 
@@ -49,24 +48,29 @@ class Home extends Component {
   renderSearchResult = () => {
     let title = "Please enter a search term";
     let url = "https://via.placeholder.com/150";
+    let id
+    let hasData = false;
+
     if (this.state.searchResult) {
       title = this.state.searchResult.data.title;
       url = this.state.searchResult.data.images.original.url;
-      console.log(url)
+      id = this.state.searchResult.data.id;
+      hasData = true;
     }
     return (
       <SearchResult
         title={title}
         url={url}
+        id={id}
         setWeirdness={this.setWeirdnessScale}
         weirdness={this.state.weirdnessScale}
+        hasData={hasData}
+        searchTerm={this.state.searchTerm}
       />
     );
   }
 
   render () {
-    console.log(this.state.searchResult)
-    // console.log( 'this state weirdness', this.state.weirdnessScale)
     return (
       <Aux>
         <Container fluid={true}>
