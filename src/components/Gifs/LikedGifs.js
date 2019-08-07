@@ -15,8 +15,6 @@ class LikedGifs extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props && this.props.likes) {
-      console.log('i am hitting update')
-      console.log('prev', prevProps.likes, 'this', this.props.likes)
       this.props.getLikes();
       this.setState({ likes: this.props.likes })
     }
