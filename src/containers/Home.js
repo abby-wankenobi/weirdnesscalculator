@@ -51,12 +51,16 @@ class Home extends Component {
     let id;
     let hasData = false;
 
-    if (this.state.searchResult) {
-      title = this.state.searchResult.data.title;
+    // If the search result returns a 200 status, return the SearchResult component with the data, otherwise show an error message and prompt the user to try another search term
+    if (this.state.searchResult && this.state.searchResult.meta.status === 200) {
+      // Remove `GIF` from each title
+      title = this.state.searchResult.data.title.replace(/GIF/g, "");
       url = this.state.searchResult.data.images.original.url;
       id = this.state.searchResult.data.id;
       searchTerm = this.state.termToSendResults;
       hasData = true;
+    } else if (this.state.searchResult && this.state.searchResult.meta.status !== 200) {
+      title = "Sorry, we couldn't find anything weird enough for you. Please try again."
     }
     return (
       <SearchResult

@@ -21,15 +21,15 @@ class Results extends Component {
 
   renderLikedGifs = () => {
     let likes = this.props.location.state.likes;
-      return likes.map((like,i) =>
-        <Col >
-          <div key={i}>
-            <p>{like.title}</p>
-            <img  className="img-max" src={like.url}></img>
-            <p>{like.weirdness}/10</p>
-          </div>
-        </Col>
-      )
+    return likes.map((like,i) =>
+      <Col >
+        <div key={i}>
+          <p>{like.title}</p>
+          <img  className="img-max" src={like.url}></img>
+          <p>{like.weirdness}/10</p>
+        </div>
+      </Col>
+    )
   }
 
   render () {

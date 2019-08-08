@@ -1,4 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Weirdness Calculator
+
+This weirdness calculator allows you to search for Gifs from the Giphy API by entering a search term and a weirdness score. You can like a Gif, adding it to your list of liked gifs, and then calculate your weirdness score average based on 5 Gif likes.
+
+To begin using, run `npm start`
+
+### Tech/Frameworks
+
+This app uses React, Redux, React-Router, and Bootstrap
+
+### Issues that still need to be resolved:
+
+-When going back to the home page after calculating first score, an error will occur when searching for and then liking a new Gif
+-Loading indicators for search
+-Redux needs to be refactored
+-If a user likes a gif, but then deletes it, 'Like' button should not be disabled anymore
 
 ## Available Scripts
 
@@ -36,33 +51,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

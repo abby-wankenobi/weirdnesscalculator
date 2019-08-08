@@ -30,14 +30,42 @@ class LikedGifs extends Component {
     if (this.state.likes && this.state.likes.length > 0) {
       return (this.state.likes.map((like, i) =>
           <Col md={6}>
-            <div key={i}>
+            <div key={i} className="p-y-20">
               <p>{like.title}</p>
-              <img className="img-max p-b-20" src={like.url}></img>
+              <img className="img-max p-b-10" src={like.url}></img>
               <br/>
-              <button onClick={() => this.props.deleteLike(like.url)}>Delete</button>
+              <button className="delete-button" onClick={() => this.props.deleteLike(like.url)}>Delete</button>
             </div>
           </Col>
         )
+      )
+    } else {
+      return (
+        <p>Enter a search term to find some weird Gifs!</p>
+      )
+    }
+  }
+
+  renderButton = () => {
+    if(!this.state.likes || this.state.likes.length < 5) {
+      return (
+        <Link to={{
+            pathname: "/results",
+            state: this.state
+          }}
+        >
+          <button className="main-button" disabled={true}>CALCULATE MY WEIRDNESS SCORE</button>
+        </Link>
+      )
+    } else if (this.state.likes && this.state.likes.length === 5){
+      return (
+        <Link to={{
+            pathname: "/results",
+            state: this.state
+          }}
+        >
+          <button className="main-button" disabled={false}>CALCULATE MY WEIRDNESS SCORE</button>
+        </Link>
       )
     }
   }
@@ -56,14 +84,9 @@ class LikedGifs extends Component {
               </Row>
             </Container>
           <br/>
-          <Link to={{
-              pathname: "/results",
-              state: this.state
-            }}
-          >
-            <button className="main-button" disabled={this.state.disableButton}>See Yours Results</button>
 
-          </Link>
+          {this.renderButton()}
+
           {/* Refactor to count down how many more gifs the user needs to like in order to calculate their score */}
           <p>You must like 5 Gifs to calculate your score</p>
         </div>

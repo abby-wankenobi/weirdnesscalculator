@@ -14,6 +14,7 @@ class SearchResult extends Component {
     disableButton: false
   }
 
+  // Checks gifs that are in the likes array and disables the 'like' button if a gif is already in the array that uses the same search term
   componentDidUpdate = (prevProps) => {
     if (this.state.alreadyExistingLikes) {
       const checkForTerm = this.state.alreadyExistingLikes.find( like => like.searchTerm === this.props.searchTerm);
