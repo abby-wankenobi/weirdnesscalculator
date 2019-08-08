@@ -3,12 +3,13 @@ import Aux from '../../hoc/Aux';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getLikes, deleteLike } from '../../actions/likeActions';
+import { Container, Row, Col } from "react-bootstrap";
 
 
 class LikedGifs extends Component {
 
   state = {
-    disableButton: true,
+    disableButton: false,
   }
 
   componentDidMount = () => {
@@ -28,33 +29,39 @@ class LikedGifs extends Component {
   renderLikes = () => {
     if (this.state.likes && this.state.likes.length > 0) {
       return (this.state.likes.map((like, i) =>
-        <div>
-          <div key={i}>
-            <p>{like.title}</p>
-            <img src={like.url}></img>
-            <button onClick={() => this.props.deleteLike(like.url)}>Delete</button>
-          </div>
-        </div>
-
+          <Col md={6}>
+            <div key={i}>
+              <p>{like.title}</p>
+              <img className="img-max p-b-20" src={like.url}></img>
+              <br/>
+              <button onClick={() => this.props.deleteLike(like.url)}>Delete</button>
+            </div>
+          </Col>
         )
       )
     }
   }
 
+
   render () {
+    console.log(this.state)
     return (
       <Aux>
         <div className="home-container liked-container">
-          <span>Liked Gifs</span>
+          <span><strong>YOUR LIKED GIFS</strong></span>
           <br/>
-          {this.renderLikes()}
+            <Container>
+              <Row>
+                {this.renderLikes()}
+              </Row>
+            </Container>
           <br/>
           <Link to={{
               pathname: "/results",
               state: this.state
             }}
           >
-            <button disabled={this.state.likes < 5 ? false : true }>See Yours Results</button>
+            <button className="main-button" disabled={this.state.disableButton}>See Yours Results</button>
 
           </Link>
           {/* Refactor to count down how many more gifs the user needs to like in order to calculate their score */}

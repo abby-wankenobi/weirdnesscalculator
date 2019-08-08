@@ -1,0 +1,32 @@
+.results-container {
+  text-align: center;
+  margin: 0 5%;
+}
+
+.results-header {
+  font-family: 'Barriecito', cursive;
+  padding-top: 80px;
+  font-size: 36px;
+  padding-bottom: 50px;
+}
+
+.results-subhead {
+  text-align: left;
+  font-weight: bold;
+  margin-left: 25px;
+  padding-bottom: 20px;
+  font-size: 18px;
+}
+
+.results-button {
+  width: 180px;
+  border-radius: 20px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 50px 0;
+  background-image: url('../../assets/nav-background.jpg');
+  background-position: 10% 69%;
+  color: white;
+  text-transform: uppercase;
+}

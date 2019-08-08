@@ -25,3 +25,18 @@
 .text-center {
   text-align: center;
 }
+
+.main-button {
+  border-radius: 20px;
+  padding: 10px 40px;
+  font-weight: bold;
+  font-size: 15px;
+  background-image: url('../../assets/nav-background.jpg');
+  background-position: 45% 29%;
+  color: white;
+  text-transform: uppercase;
+}
+
+.main-button:disabled {
+  opacity: .5;
+}

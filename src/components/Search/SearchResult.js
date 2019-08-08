@@ -61,7 +61,7 @@ class SearchResult extends Component {
                   </div>
                   <br/>
                   <p>Weirdness: {this.props.weirdness}</p>
-                  <button
+                  <button className="main-button"
                     disabled={this.state.disableButton}
                     onClick={() => this.props.newLike(
                       {
