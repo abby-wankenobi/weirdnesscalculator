@@ -4,7 +4,7 @@ export const getLikes = () => dispatch => {
   dispatch({type: "FETCH_LIKES"})
 }
 
-export const newLikes = (like) => dispatch => {
+export const newLike = (like) => dispatch => {
   dispatch({type: "NEW_LIKE", payload: like})
 }
 

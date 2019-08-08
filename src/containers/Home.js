@@ -13,7 +13,7 @@ class Home extends Component {
   state = {
     searchTerm: "",
     weirdnessScale: 0,
-    searchResult: null
+    searchResult: null,
   }
 
   // Function being passed to Search.js
@@ -27,14 +27,13 @@ class Home extends Component {
   // On submission of search term, calls giphy API passing in search term and weirdness level
   // Function being passed to Search.js
   handleSearchTermSubmit = async () => {
-    const result = await apiCall(this.state.searchTerm, this.state.weirdnessScale, this.setSearchResult);
+    this.setState({ termToSendResults: this.state.searchTerm})
+    await apiCall(this.state.searchTerm, this.state.weirdnessScale, this.setSearchResult);
   }
 
   // Passed into API call to set search result to state
   setSearchResult = (searchResult) => {
-    this.setState({
-      searchResult
-    })
+    this.setState({ searchResult })
   }
 
   // Sets weirdness scale and calls API again to return a new GIF
@@ -47,14 +46,16 @@ class Home extends Component {
   // Conditionally renders SearchResult component depending on results from the API
   renderSearchResult = () => {
     let title = "Please enter a search term";
-    let url = "https://via.placeholder.com/150";
-    let id
+    let url = "http://cl.jroo.me/z3/S/_/v/e/a.baa-Cool-and-funny-kitten.jpg";
+    let searchTerm = '';
+    let id;
     let hasData = false;
 
     if (this.state.searchResult) {
       title = this.state.searchResult.data.title;
       url = this.state.searchResult.data.images.original.url;
       id = this.state.searchResult.data.id;
+      searchTerm = this.state.termToSendResults;
       hasData = true;
     }
     return (
@@ -65,12 +66,13 @@ class Home extends Component {
         setWeirdness={this.setWeirdnessScale}
         weirdness={this.state.weirdnessScale}
         hasData={hasData}
-        searchTerm={this.state.searchTerm}
+        searchTerm={searchTerm}
       />
     );
   }
 
   render () {
+    console.log('home', this.state)
     return (
       <Aux>
         <Container fluid={true}>
@@ -80,7 +82,6 @@ class Home extends Component {
                 handleChange={this.handleSearchTermChange}
                 handleSubmit={this.handleSearchTermSubmit}
               />
-
               {this.renderSearchResult()}
             </Col>
             <Col sm={6} xs={12}>

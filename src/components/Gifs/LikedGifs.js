@@ -7,16 +7,20 @@ import { getLikes, deleteLike } from '../../actions/likeActions';
 
 class LikedGifs extends Component {
 
-  state = {}
+  state = {
+    disableButton: true,
+  }
 
   componentDidMount = () => {
-    this.props.getLikes();
+    console.log(this.props.getLikes());
   }
 
   componentDidUpdate = (prevProps) => {
     if (prevProps !== this.props && this.props.likes) {
       this.props.getLikes();
-      this.setState({ likes: this.props.likes })
+      this.setState({
+        likes: this.props.likes,
+      })
     }
   }
 
@@ -24,11 +28,14 @@ class LikedGifs extends Component {
   renderLikes = () => {
     if (this.state.likes && this.state.likes.length > 0) {
       return (this.state.likes.map((like, i) =>
+        <div>
           <div key={i}>
             <p>{like.title}</p>
             <img src={like.url}></img>
             <button onClick={() => this.props.deleteLike(like.url)}>Delete</button>
           </div>
+        </div>
+
         )
       )
     }
@@ -39,12 +46,21 @@ class LikedGifs extends Component {
       <Aux>
         <div className="home-container liked-container">
           <span>Liked Gifs</span>
+          <br/>
           {this.renderLikes()}
+          <br/>
+          <Link to={{
+              pathname: "/results",
+              state: this.state
+            }}
+          >
+            <button disabled={this.state.likes < 5 ? false : true }>See Yours Results</button>
 
+          </Link>
+          {/* Refactor to count down how many more gifs the user needs to like in order to calculate their score */}
+          <p>You must like 5 Gifs to calculate your score</p>
         </div>
-        <Link to="/results">
-          <button>See Yours Results</button>
-        </Link>
+
       </Aux>
     )
   }
